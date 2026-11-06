@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
-import 'screens/details_screen.dart';
+import 'package:catalogo_senati/screens/login_screen.dart';
+import 'package:catalogo_senati/screens/home_screen.dart';
+import 'package:catalogo_senati/screens/details_screen.dart';
 
 void main() {
-  runApp(const CatalogoSenatiApp());
+  runApp(const MyApp());
 }
 
-class CatalogoSenatiApp extends StatelessWidget {
-  const CatalogoSenatiApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +18,14 @@ class CatalogoSenatiApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue.shade900, 
-          primary: Colors.blue.shade900,
-          secondary: Colors.green.shade600, 
+          seedColor: const Color(0xFF005691), // Azul institucional SENATI
+          secondary: const Color(0xFF00A859), // Verde secundario
         ),
       ),
-      // Sistema de rutas
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomeScreen(),
+        '/': (context) => const LoginScreen(),
+        '/home': (context) => const HomeScreen(),
         '/details': (context) => const DetailsScreen(),
       },
     );

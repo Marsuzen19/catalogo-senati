@@ -61,6 +61,14 @@ class _HomeScreenState extends State<HomeScreen> {
               // Acción de búsqueda futura
             },
           ),
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.white),
+            tooltip: 'Cerrar Sesión',
+            onPressed: () {
+              // Regresa a la pantalla de login y elimina el historial de rutas
+              Navigator.pushReplacementNamed(context, '/');
+            },
+          ),
         ],
       ),
       body: Column(
@@ -96,33 +104,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-        floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
         onPressed: () {
-            // Invoca el modal emergente (Bottom Sheet)
-            showModalBottomSheet(
+          // Invoca el modal emergente (Bottom Sheet)
+          showModalBottomSheet(
             context: context,
             isScrollControlled: true, // Permite que el modal crezca y no lo tape el teclado
             shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
             builder: (context) {
-                return AddComponentModal(
+              return AddComponentModal(
                 onAgregar: (nuevoComponente) {
-                    // Lógica reactiva para inyectar el nuevo dato
-                    setState(() {
+                  // Lógica reactiva para inyectar el nuevo dato
+                  setState(() {
                     listaCompleta.add(nuevoComponente);
                     // Volvemos a aplicar el filtro actual para que aparezca en pantalla
                     filtrarPorCategoria(categoriaSeleccionada);
-                    });
+                  });
                 },
-                );
+              );
             },
-            );
+          );
         },
         child: const Icon(Icons.add),
-        ),
+      ),
     );
   }
 }
